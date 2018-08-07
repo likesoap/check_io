@@ -1,27 +1,18 @@
 def check_row(row1: str, row2: str, row3: str):
-    for n in row1:
-        if row1[0] == n == 'X':
-            return 'X'
-        elif row1[0] == n == 'O':
-            return 'O'
-        else:
-            return 'D'
-
-    for n in row2:
-        if row2[0] == n == 'X':
-            return 'X'
-        elif row2[0] == n == 'O':
-            return 'O'
-        else:
-            return 'D'
-
-    for o in row3:
-        if row3[0] == o == 'X':
-            return 'X'
-        elif row3[0] == o == 'O':
-            return 'O'
-        else:
-            return 'D'
+    if row1.count(row1[0]) == len(row1) and row1[0] == 'X':
+        return 'X'
+    elif row1.count(row1[0]) == len(row1) and row1[0] == 'O':
+        return 'O'
+    elif row2.count(row2[0]) == len(row2) and row2[0] == 'X':
+        return 'X'
+    elif row2.count(row2[0]) == len(row2) and row2[0] == 'O':
+        return 'O'
+    elif row3.count(row3[0]) == len(row3) and row3[0] == 'X':
+        return 'X'
+    elif row3.count(row3[0]) == len(row3) and row3[0] == 'O':
+        return 'O'
+    else:
+        return 'D'
 
 
 def check_col(row1: str, row2: str, row3: str):
@@ -30,8 +21,7 @@ def check_col(row1: str, row2: str, row3: str):
             return 'X'
         elif row1[m] == row2[m] == row3[m] == 'O':
             return 'O'
-        else:
-            return 'D'
+    return 'D'
 
 
 def check_diag(row1: str, row2: str, row3: str):
@@ -61,11 +51,16 @@ def checkio(input: str):
     for l in input[2]:
         row3.append(l)
 
-    check_row(row1, row2, row3)
-    check_col(row1, row2, row3)
-    check_diag(row1, row2, row3)
+    print('check row= '+check_row(row1, row2, row3))
+    print('check col= '+check_col(row1, row2, row3))
+    print('check diag= '+check_diag(row1, row2, row3))
 
-
+    if check_row(row1, row2, row3) == 'X' or check_col(row1, row2, row3) == 'X' or check_diag(row1, row2, row3) == 'X':
+        return 'X'
+    elif check_row(row1, row2, row3) == 'O' or check_col(row1, row2, row3) == 'O' or check_diag(row1, row2, row3) == 'O':
+        return 'O'
+    else:
+        return 'D'
 
     # assert checkio([
     #     "X.O",
@@ -83,7 +78,14 @@ def checkio(input: str):
     #     "O.X",
     #     "XX.",
     #     "XOO"]) == "X", "Xs wins again"
-print(checkio([
-    "X.O",
-    "XX.",
-    "XOO"]))
+# print(checkio([
+#     "OOX",
+#     "XXO",
+#     "OXX"]))
+# print(checkio([
+#     "OO.",
+#     "XOX",
+#     "XOX"]))
+
+
+print(checkio([".O.", "XXX", ".O."]))
